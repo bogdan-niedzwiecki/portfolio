@@ -1,0 +1,270 @@
+@import './styles/settings.scss';
+@import './styles/elements.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  max-width: 60rem;
+  width: 100%;
+  margin: 2rem 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.menu__item {
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  @media (max-width: $breakpoint) {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  &:hover {
+    .menu__link {
+      color: $primary;
+    }
+  }
+}
+
+.highlighted,
+.menu__item.active .menu__link {
+  color: $primary;
+  position: relative;
+
+  &::after {
+    content: attr(data-stroke);
+    color: transparent;
+    -webkit-text-stroke: 1px $primary;
+    left: 3px;
+    top: 3px;
+    z-index: -1;
+    position: absolute;
+
+    @media (max-width: $breakpoint) {
+      left: 2px;
+      top: 2px;
+    }
+  }
+}
+
+.menu__link,
+.social__link {
+  text-decoration: none;
+  color: $font-primary;
+}
+
+.section {
+  text-align: center;
+}
+
+.hero__title {
+  letter-spacing: 7px;
+  font-size: 8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 2rem 0;
+  color: $font-primary;
+
+  @media (max-width: $breakpoint) {
+    font-size: 4rem;
+  }
+}
+
+.hero__subtitle {
+  letter-spacing: 5px;
+  padding: 0 10vw;
+  margin: 1rem auto;
+  font-weight: normal;
+  font-size: 2.4rem;
+  color: $font-secondary;
+  text-transform: uppercase;
+
+  @media (max-width: $breakpoint) {
+    font-size: 1.6rem;
+  }
+}
+
+.work {
+
+  &::before,
+  &::after {
+    content: 'selectedworks';
+    position: absolute;
+    width: 100%;
+    font-size: 13rem;
+    font-style: italic;
+    text-transform: uppercase;
+    direction: rtl;
+
+    @media (max-width: $breakpoint) {
+      font-size: 4rem;
+      top: 35vh !important;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &::before {
+    top: 10vh;
+    color: $secondary;
+  }
+
+  &::after {
+    -webkit-text-stroke: 2px $secondary;
+    color: transparent;
+    left: 1rem;
+    top: 11vh;
+
+    @media (max-width: $breakpoint) {
+      left: .75rem;
+    }
+  }
+}
+
+.swiper-container {
+  height: 40vh;
+}
+
+.swiper-wrapper {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper-slide {
+  &-active {
+    .figure__link {
+      width: 100%;
+      height: 100%;
+
+      &::before {
+        opacity: .5;
+      }
+    }
+
+    .figure__description {
+      transform: translateY(0);
+    }
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: $white !important;
+}
+
+.figure {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.figure__link {
+  display: block;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  transition: width .2s 1s, height .2s 1s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: opacity .3s 1s;
+    background-image: linear-gradient(0deg, $secondary 0%, $primary 100%);
+    mix-blend-mode: multiply;
+  }
+}
+
+.figure__img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figure__figcaption {
+  position: absolute;
+  bottom: 15%;
+  left: -15%;
+  overflow: hidden;
+}
+
+.figure__description {
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 3px;
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform .3s 1s;
+  color: $font-primary;
+
+  @media (max-width: $breakpoint) {
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
+
+.social {
+  max-width: 20rem;
+  width: 100%;
+  margin: 2rem 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.social__item {
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  @media (max-width: $breakpoint) {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  &:hover {
+    .social__link {
+      color: $primary;
+    }
+  }
+}
