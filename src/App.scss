@@ -35,7 +35,7 @@
     letter-spacing: 3px;
   }
 
-  &:hover {
+  &:hover:not(:visited) {
     .menu__link {
       color: $primary;
     }
