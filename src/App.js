@@ -31,6 +31,8 @@ class App extends Component {
         <ReactFullpage
           anchors={menu}
           menu={"#menu"}
+          paddingTop={'65px'}
+          paddingBottom={'65px'}
           render={() => {
             return (
               <main>
@@ -72,7 +74,7 @@ class App extends Component {
                     navigation
                     slidesPerView={2}
                     centeredSlides={true}
-                    autoplay={{ delay: 2400, disableOnInteraction: false }}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
                   >
                     {gallery.map(item => (
                       <SwiperSlide tag="li" key={item.description}>

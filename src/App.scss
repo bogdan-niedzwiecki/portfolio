@@ -27,13 +27,11 @@
 
 .menu__item {
   font-size: 1.8rem;
-  letter-spacing: 3px;
-  font-weight: bold;
-  text-transform: uppercase;
+  letter-spacing: 2px;
 
   @media (max-width: $breakpoint) {
     font-size: 1.4rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   &:hover {
@@ -50,17 +48,13 @@
 
   &::after {
     content: attr(data-stroke);
+    position: absolute;
     color: transparent;
     -webkit-text-stroke: 1px $primary;
-    left: 3px;
-    top: 3px;
+    left: calc(1.75px + .025em);
+    top: calc(1.75px + .025em);
     z-index: -1;
-    position: absolute;
-
-    @media (max-width: $breakpoint) {
-      left: 2px;
-      top: 2px;
-    }
+    
   }
 }
 
@@ -75,10 +69,9 @@
 }
 
 .hero__title {
-  letter-spacing: 7px;
+  letter-spacing: 6px;
   font-size: 8rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  font-weight: normal;
   margin: 2rem 0;
   color: $font-primary;
 
@@ -88,13 +81,11 @@
 }
 
 .hero__subtitle {
-  letter-spacing: 5px;
-  padding: 0 10vw;
+  letter-spacing: 4px;
+  padding: 0 15vw;
   margin: 1rem auto;
-  font-weight: normal;
   font-size: 2.4rem;
   color: $font-secondary;
-  text-transform: uppercase;
 
   @media (max-width: $breakpoint) {
     font-size: 1.6rem;
@@ -102,38 +93,32 @@
 }
 
 .work {
+  position: relative;
 
   &::before,
   &::after {
-    content: 'selectedworks';
+    color: $secondary;
     position: absolute;
-    width: 100%;
     font-size: 13rem;
     font-style: italic;
-    text-transform: uppercase;
-    direction: rtl;
-
+    
     @media (max-width: $breakpoint) {
       font-size: 4rem;
-      top: 35vh !important;
-      transform: rotate(-45deg);
     }
   }
 
   &::before {
-    top: 10vh;
-    color: $secondary;
+    -webkit-text-stroke: 1.5px $secondary;
+    color: transparent;
+    content: 'selected';
+    top: calc(20vh - 1em);
+    left: 5vw;
   }
 
   &::after {
-    -webkit-text-stroke: 2px $secondary;
-    color: transparent;
-    left: 1rem;
-    top: 11vh;
-
-    @media (max-width: $breakpoint) {
-      left: .75rem;
-    }
+    content: 'works';
+    bottom: calc(20vh - 1em);
+    right: 5vw;
   }
 }
 
@@ -167,6 +152,9 @@
 .swiper-button-next,
 .swiper-button-prev {
   color: $white !important;
+  @media (max-width: $breakpoint) {
+    display: none !important;
+  }
 }
 
 .figure {
@@ -216,8 +204,6 @@
 
 .figure__description {
   font-size: 4rem;
-  text-transform: uppercase;
-  font-weight: bold;
   letter-spacing: 3px;
   display: inline-block;
   transform: translateY(100%);
@@ -253,13 +239,11 @@
 
 .social__item {
   font-size: 1.8rem;
-  letter-spacing: 3px;
-  font-weight: bold;
-  text-transform: uppercase;
+  letter-spacing: 2px;
 
   @media (max-width: $breakpoint) {
     font-size: 1.4rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
 
   &:hover {
