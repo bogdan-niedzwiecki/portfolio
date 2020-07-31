@@ -70,11 +70,12 @@ class App extends Component {
                 <section className="section work">
                   <Swiper
                     wrapperTag="ul"
-                    breakpoints={{ 0: { spaceBetween: 30 }, 550: { spaceBetween: 100 } }}
+                    breakpoints={{ 0: { spaceBetween: 40 }, 576: { spaceBetween: 80 }, 768: { spaceBetween: 120 } }}
                     navigation
                     slidesPerView={2}
                     centeredSlides={true}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    speed={400}
                   >
                     {gallery.map(item => (
                       <SwiperSlide tag="li" key={item.description}>
@@ -82,7 +83,7 @@ class App extends Component {
                           <a className="figure__link" href={item.href} target="_blank" rel="noopener noreferrer">
                             <img className="figure__img" alt={item.description} src={item.src} />
                           </a>
-                          <figcaption className="figure__figcaption"><span className="figure__description">{item.description}</span></figcaption>
+                          <figcaption className="figure__figcaption"><a href={item.href} target="_blank" rel="noopener noreferrer" className="figure__description">{item.description}</a></figcaption>
                         </figure>
                       </SwiperSlide>))}
                   </Swiper>

@@ -1,4 +1,5 @@
 @import './styles/settings.scss';
+@import './styles/tools.scss';
 @import './styles/elements.scss';
 
 .header {
@@ -26,12 +27,12 @@
 }
 
 .menu__item {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   letter-spacing: 2px;
 
-  @media (max-width: $breakpoint) {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
+  @include md {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
   }
 
   &:hover {
@@ -54,7 +55,6 @@
     left: calc(1.75px + .025em);
     top: calc(1.75px + .025em);
     z-index: -1;
-    
   }
 }
 
@@ -69,26 +69,35 @@
 }
 
 .hero__title {
-  letter-spacing: 6px;
-  font-size: 8rem;
+  letter-spacing: 5px;
+  font-size: 4rem;
   font-weight: normal;
   margin: 2rem 0;
   color: $font-primary;
+  padding: 0 1rem;
 
-  @media (max-width: $breakpoint) {
-    font-size: 4rem;
+  @include lg {
+    font-size: 6rem;
+  }
+
+  @include xl {
+    font-size: 8rem;
   }
 }
 
 .hero__subtitle {
   letter-spacing: 4px;
-  padding: 0 15vw;
+  padding: 0 13vw;
   margin: 1rem auto;
-  font-size: 2.4rem;
+  font-size: 1.6rem;
   color: $font-secondary;
 
-  @media (max-width: $breakpoint) {
-    font-size: 1.6rem;
+  @include lg {
+    font-size: 2.2rem;
+  }
+
+  @include xl {
+    font-size: 2.4rem;
   }
 }
 
@@ -99,11 +108,19 @@
   &::after {
     color: $secondary;
     position: absolute;
-    font-size: 13rem;
+    font-size: 4rem;
     font-style: italic;
-    
-    @media (max-width: $breakpoint) {
-      font-size: 4rem;
+
+    @include md {
+      font-size: 10rem;
+
+      @media (orientation: landscape) {
+        font-size: 4rem;
+      }
+    }
+
+    @include lg {
+      font-size: 12rem;
     }
   }
 
@@ -152,8 +169,10 @@
 .swiper-button-next,
 .swiper-button-prev {
   color: $white !important;
-  @media (max-width: $breakpoint) {
-    display: none !important;
+  display: none !important;
+
+  @include lg {
+    display: block !important;
   }
 }
 
@@ -203,16 +222,19 @@
 }
 
 .figure__description {
-  font-size: 4rem;
-  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  line-height: 1;
   display: inline-block;
   transform: translateY(100%);
   transition: transform .3s 1s;
   color: $font-primary;
+  text-align: left;
 
-  @media (max-width: $breakpoint) {
-    font-size: 3rem;
-    letter-spacing: 2px;
+  @include lg {
+    font-size: 4rem;
+    letter-spacing: 3px;
   }
 }
 
@@ -238,12 +260,12 @@
 }
 
 .social__item {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   letter-spacing: 2px;
 
-  @media (max-width: $breakpoint) {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
+  @include md {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
   }
 
   &:hover {

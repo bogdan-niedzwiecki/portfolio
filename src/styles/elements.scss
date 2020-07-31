@@ -69,7 +69,7 @@ body {
 
   &::before {
     content: "";
-    opacity: .25;
+    opacity: .35;
     animation: grain 1s steps(1) infinite;
     height: 300%;
     left: -50%;
