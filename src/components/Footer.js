@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 
 class Footer extends Component {
   render() {
+
+    const social = [{ href: 'https://www.facebook.com/niedzwiecki/', content: 'Fb.' },
+    { href: 'https://www.linkedin.com/in/bogdan-niedzwiecki', content: 'Li.' },
+    { href: 'https://github.com/bogdan-niedzwiecki', content: 'Gh.' }];
+    
     return (
       <footer className="footer">
         <ul className="social">
-          {this.props.anchors.map(anchor => (
-            <li className="social__item" key={anchor.content}>
-              <a className="social__link" href={anchor.href} rel="noopener noreferrer" target="_blank">{anchor.content}</a>
+          {social.map(item => (
+            <li className="social__item" key={item.content}>
+              <a className="social__link" href={item.href} rel="noopener noreferrer" target="_blank">{item.content}</a>
             </li>))}
         </ul>
       </footer>

@@ -35,7 +35,7 @@
     letter-spacing: 3px;
   }
 
-  &:hover:not(:visited) {
+  &:hover {
     .menu__link {
       color: $primary;
     }
@@ -152,8 +152,7 @@
 .swiper-slide {
   &-active {
     .figure__link {
-      width: 100%;
-      height: 100%;
+      transform: scale(1);
 
       &::before {
         opacity: .5;
@@ -170,6 +169,7 @@
 .swiper-button-prev {
   color: $white !important;
   display: none !important;
+  transform: scale(1.5);
 
   @include lg {
     display: block !important;
@@ -189,10 +189,11 @@
 
 .figure__link {
   display: block;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.8);
   position: relative;
-  transition: width .2s 1s, height .2s 1s;
+  transition: transform .2s 1s;
 
   &::before {
     content: '';
@@ -222,6 +223,7 @@
 }
 
 .figure__description {
+  position: relative;
   text-decoration: none;
   font-size: 3rem;
   letter-spacing: 2px;
@@ -231,10 +233,24 @@
   transition: transform .3s 1s;
   color: $font-primary;
   text-align: left;
+  z-index: 1;
 
   @include lg {
     font-size: 4rem;
     letter-spacing: 3px;
+  }
+}
+
+.contact {
+  color: white;
+}
+
+.form {
+  display: inline-flex;
+  flex-direction: column;
+
+  & > *:nth-child(2n + 1) {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -274,3 +290,5 @@
     }
   }
 }
+
+.grecaptcha-badge { visibility: hidden; }

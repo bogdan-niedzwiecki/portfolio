@@ -1,31 +1,30 @@
 import React, { Component, Fragment } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Baffle from "baffle-react";
-import Header from './components/Header'
-import Footer from './components/Footer'
-import './App.scss';
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
+import './App.scss';
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Form from './components/Form'
+
 SwiperCore.use([Navigation, Autoplay]);
 
-let menu = ['about', 'works', 'contact'];
-
-let gallery = [
-  { src: require('./img/projects/survey-form.webp'), description: 'Survey Form', href: 'https://bogdan-niedzwiecki.github.io/survey-form/', },
-  { src: require('./img/projects/possible.webp'), description: 'Possible', href: 'https://bn-possible.netlify.app', },
-  { src: require('./img/projects/quote-machine.webp'), description: 'Quote Machine', href: 'https://bn-quote-machine.netlify.app', },
-  { src: require('./img/projects/markdown-previewer.webp'), description: 'Markdown Previewer', href: 'https://bn-markdown-previewer.netlify.app', },
-  { src: require('./img/projects/drum-machine.webp'), description: 'Drum Machine', href: 'https://bn-drum-machine.netlify.app', }
-]
-
-let social = [{ href: 'https://www.facebook.com/niedzwiecki/', content: 'Fb.' },
-{ href: 'https://www.linkedin.com/in/bogdan-niedzwiecki', content: 'Li.' },
-{ href: 'https://github.com/bogdan-niedzwiecki', content: 'Gh.' }];
-
 class App extends Component {
+
   render() {
+    const menu = ['about', 'works', 'contact'];
+
+    const gallery = [
+      { src: require('./img/projects/survey-form.webp'), description: 'Survey Form', href: 'https://bogdan-niedzwiecki.github.io/survey-form/', },
+      { src: require('./img/projects/possible.webp'), description: 'Possible', href: 'https://bn-possible.netlify.app', },
+      { src: require('./img/projects/quote-machine.webp'), description: 'Quote Machine', href: 'https://bn-quote-machine.netlify.app', },
+      { src: require('./img/projects/markdown-previewer.webp'), description: 'Markdown Previewer', href: 'https://bn-markdown-previewer.netlify.app', },
+      { src: require('./img/projects/drum-machine.webp'), description: 'Drum Machine', href: 'https://bn-drum-machine.netlify.app', }
+    ]
+
     return (
       <Fragment>
         <Header anchors={menu} />
@@ -77,6 +76,7 @@ class App extends Component {
                     centeredSlides={true}
                     autoplay={{ delay: 4000, disableOnInteraction: false }}
                     speed={400}
+                    simulateTouch={false}
                   >
                     {gallery.map(item => (
                       <SwiperSlide tag="li" key={item.description}>
@@ -89,14 +89,14 @@ class App extends Component {
                       </SwiperSlide>))}
                   </Swiper>
                 </section>
-                <div className="section">
-                  <h3>id="section2"</h3>
-                </div>
+                <section className="section contact">
+                 <Form/>
+                </section>
               </main>
             );
           }}
         />
-        <Footer anchors={social} />
+        <Footer />
       </Fragment>
     )
   }
