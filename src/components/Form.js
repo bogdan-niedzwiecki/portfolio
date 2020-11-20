@@ -23,15 +23,23 @@ class Header extends Component {
 
   render() {
     return (
-      <form className="form"
-        onSubmit={(e) => this.sendEmail(e)}>
-        <label>Name</label>
-        <input type="text" name="user_name" required />
-        <label>Email</label>
-        <input type="email" name="user_email" required />
-        <label>Message</label>
-        <textarea name="user_message" required />
-        <button className="g-recaptcha" data-sitekey="6LezB-QZAAAAADrO_-4lNNbozWX_fdmKLGl7wbN-" data-callback="onSubmit">Send</button>
+      <form className="form" autoComplete="off" noValidate onSubmit={(e) => this.sendEmail(e)}>
+        <div className="form__field">
+          <input placeholder="Your name" className="form__input" type="text" id="user_name" name="user_name" />
+          <label className="form__label" htmlFor="user_name">Your Name</label>
+          <div className="form__border"></div>
+        </div>
+        <div className="form__field">
+          <input placeholder="Your email" className="form__input" type="email" id="user_email" name="user_email" />
+          <label className="form__label" htmlFor="user_email">Your Email</label>
+          <div className="form__border"></div>
+        </div>
+        <div className="form__field">
+          <textarea rows="3" placeholder="Your message" className="form__input form__input--textarea" id="user_message" name="user_message" />
+          <label className="form__label" htmlFor="user_message">Your message</label>
+          <div className="form__border"></div>
+        </div>
+        <button className="g-recaptcha" data-sitekey="6LezB-QZAAAAADrO_-4lNNbozWX_fdmKLGl7wbN-" data-callback="onSubmit">Share your thoughts</button>
       </form>
     )
   }
