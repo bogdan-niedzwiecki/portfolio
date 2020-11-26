@@ -1,6 +1,6 @@
-@import './styles/settings.scss';
-@import './styles/tools.scss';
-@import './styles/elements.scss';
+@import "./styles/settings.scss";
+@import "./styles/tools.scss";
+@import "./styles/elements.scss";
 
 .header {
   position: fixed;
@@ -28,11 +28,10 @@
 
 .menu__item {
   font-size: 1.4rem;
-  letter-spacing: 2px;
+  letter-spacing: $letter-spacing;
 
   @include md {
     font-size: 1.8rem;
-    letter-spacing: 3px;
   }
 
   &:hover {
@@ -52,8 +51,8 @@
     position: absolute;
     color: transparent;
     -webkit-text-stroke: 1px $primary;
-    left: calc(1.75px + .025em);
-    top: calc(1.75px + .025em);
+    left: calc(1.75px + 0.025em);
+    top: calc(1.75px + 0.025em);
     z-index: -1;
   }
 }
@@ -68,13 +67,17 @@
   text-align: center;
 }
 
-.hero__title {
-  letter-spacing: 5px;
+.title {
   font-size: 4rem;
+  letter-spacing: $letter-spacing;
   font-weight: normal;
-  margin: 2rem 0;
+  margin: 0 0 1.8rem 0;
+  padding: 0;
   color: $font-primary;
-  padding: 0 1rem;
+
+  &--right {
+    text-align: right;
+  }
 
   @include lg {
     font-size: 6rem;
@@ -85,11 +88,11 @@
   }
 }
 
-.hero__subtitle {
-  letter-spacing: 4px;
-  padding: 0 13vw;
-  margin: 1rem auto;
+.subtitle {
+  margin: 0;
+  padding: 0;
   font-size: 1.6rem;
+  letter-spacing: $letter-spacing;
   color: $font-secondary;
 
   @include lg {
@@ -110,6 +113,7 @@
     position: absolute;
     font-size: 4rem;
     font-style: italic;
+    letter-spacing: $letter-spacing;
 
     @include md {
       font-size: 10rem;
@@ -127,13 +131,13 @@
   &::before {
     -webkit-text-stroke: 1.5px $secondary;
     color: transparent;
-    content: 'selected';
+    content: "selected";
     top: calc(20vh - 1em);
     left: 5vw;
   }
 
   &::after {
-    content: 'works';
+    content: "works";
     bottom: calc(20vh - 1em);
     right: 5vw;
   }
@@ -155,7 +159,7 @@
       transform: scale(1);
 
       &::before {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
 
@@ -193,16 +197,16 @@
   height: 100%;
   transform: scale(0.8);
   position: relative;
-  transition: transform .2s 1s;
+  transition: transform 0.2s 1s;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    transition: opacity .3s 1s;
+    transition: opacity 0.3s 1s;
     background-image: linear-gradient(0deg, $secondary 0%, $primary 100%);
     mix-blend-mode: multiply;
   }
@@ -226,44 +230,68 @@
   position: relative;
   text-decoration: none;
   font-size: 3rem;
-  letter-spacing: 2px;
-  line-height: 1;
+  letter-spacing: $letter-spacing;
   display: inline-block;
   transform: translateY(100%);
-  transition: transform .3s 1s;
+  transition: transform 0.3s 1s;
   color: $font-primary;
   text-align: left;
   z-index: 1;
 
   @include lg {
     font-size: 4rem;
-    letter-spacing: 3px;
   }
 }
 
 .contact {
+  display: flex;
   color: $font-primary;
+}
+
+.container {
+  max-width: 135rem;
+  height: 100%;
+  max-height: 40rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  @include lg {
+    max-height: 60rem;
+  }
 }
 
 .form {
   text-align: left;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  height: 30rem;
+  justify-content: space-between;
+  flex: 1 0 0;
+  margin: 0 4vw;
 }
 
 .form__field {
   position: relative;
-  margin: 3rem 0;
+  margin: calc(3vh + 1rem) 0 0 0;
 
   &::before {
-    content: '';
-    height: 1.5px;
+    content: "";
+    height: 2px;
     width: 100%;
     background-color: $silver;
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+
+  &--textarea {
+    flex: 1 0 0;
+    @media (orientation: landscape) {
+      flex: 0 0 0;
+      @include sm {
+        flex: 1 0 0;
+      }
+    }
   }
 }
 
@@ -271,59 +299,148 @@
   background-color: transparent;
   border: none;
   outline: none;
-  color: $silver;
-  font-family: inherit;
-  font-size: 1.2rem;
+  color: $font-primary;
   height: 100%;
   width: 100%;
-  min-height: 3rem;
   margin: 0;
-  padding: 0;
+  padding: 0.3rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  letter-spacing: $letter-spacing;
+
+  @include lg {
+    font-size: 2.2rem;
+  }
+
+  @include xl {
+    font-size: 2.4rem;
+  }
 
   &--textarea {
     resize: none;
-    padding-top: .7rem;
   }
 
   &::placeholder {
     color: transparent;
   }
 
-  &:focus+.form__label,
-  &:not(:placeholder-shown)+.form__label {
+  &:focus + .form__label,
+  &:not(:placeholder-shown) + .form__label {
     bottom: 100%;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+
+    @include lg {
+      font-size: 1.6rem;
+    }
+
+    @include xl {
+      font-size: 1.8rem;
+    }
   }
 
-  &:focus+.form__label {
+  &:focus + .form__label {
     color: $primary;
   }
 
-  &:focus~.form__border {
+  &:focus ~ .form__border {
     width: 100%;
   }
 }
 
 .form__label {
-  font-size: 1.4rem;
   text-align: left;
-  color: $silver;
+  color: $secondary;
   position: absolute;
-  bottom: .5rem;
+  bottom: 0.5rem;
   left: 0;
   pointer-events: none;
-  transition: bottom .3s, font-size .3s, color .3s;
-  letter-spacing: 1.25px;
+  transition: bottom 0.3s, font-size 0.3s, color 0.3s, letter-spacing 0.3s;
+  letter-spacing: $letter-spacing;
+  font-size: 1.6rem;
+
+  @include lg {
+    font-size: 2.2rem;
+  }
+
+  @include xl {
+    font-size: 2.4rem;
+  }
 }
 
 .form__border {
-  transition: width .3s;
-  height: 1.5px;
+  transition: width 0.3s;
+  height: 2px;
   width: 0;
   background-color: $primary;
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.form__submit {
+  border: none;
+  outline: none;
+  background: $white;
+  margin: calc(1.5vh + 0.5rem) 0 1.25vh 0;
+  padding: 2vh;
+  font-family: inherit;
+  letter-spacing: $letter-spacing;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background: $primary;
+  }
+
+  @include lg {
+    font-size: 2rem;
+  }
+
+  @include xl {
+    font-size: 2.2rem;
+  }
+}
+
+.hero {
+  display: none;
+  text-align: left;
+  margin: 0 4vw;
+  flex: 1 0 0;
+
+  @include sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.defiz {
+  hr {
+    display: inline-block;
+
+    vertical-align: middle;
+    background-color: $silver;
+    border: none;
+
+    @include sm {
+      width: 14.5rem;
+      height: 0.75rem;
+      margin-right: 2rem;
+    }
+
+    @include lg {
+      width: 21.75rem;
+      height: 1rem;
+      margin-right: 3rem;
+    }
+
+    @include xl {
+      width: 29rem;
+      height: 1.25rem;
+      margin-right: 4rem;
+    }
+  }
 }
 
 .footer {
@@ -349,11 +466,10 @@
 
 .social__item {
   font-size: 1.4rem;
-  letter-spacing: 2px;
+  letter-spacing: $letter-spacing;
 
   @include md {
     font-size: 1.8rem;
-    letter-spacing: 3px;
   }
 
   &:hover {
@@ -361,8 +477,4 @@
       color: $primary;
     }
   }
-}
-
-.grecaptcha-badge {
-  visibility: hidden;
 }

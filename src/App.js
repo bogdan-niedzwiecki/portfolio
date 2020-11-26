@@ -10,11 +10,12 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Form from './components/Form'
 
-SwiperCore.use([Navigation, Autoplay]);
 
 class App extends Component {
 
   render() {
+    SwiperCore.use([Navigation, Autoplay]);
+
     const menu = ['about', 'works', 'contact'];
 
     const gallery = [
@@ -30,41 +31,39 @@ class App extends Component {
         <ReactFullpage
           anchors={menu}
           menu={"#menu"}
-          paddingTop={'65px'}
-          paddingBottom={'65px'}
+          paddingTop={'8vw'}
+          paddingBottom={'8vw'}
           render={() => {
             return (
               <main>
                 <section className="section about">
-                  <div className="hero">
-                    <h1 className="hero__title">
-                      <span className="highlighted" data-stroke="Hey, ">Hey, </span>
-                      <Baffle
-                        speed={100}
-                        characters="█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒"
-                        obfuscate={false}
-                        revealDuration={1500}
-                      >I am Bogdan
+                  <h1 className="title">
+                    <span className="highlighted" data-stroke="Hey,&nbsp;">Hey, </span>
+                    <Baffle
+                      speed={100}
+                      characters="█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒"
+                      obfuscate={false}
+                      revealDuration={2000}
+                    >I am Bogdan
                     </Baffle>
-                    </h1>
-                    <p className="hero__subtitle">
-                      <Baffle
-                        speed={100}
-                        characters="█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒"
-                        obfuscate={false}
-                        revealDuration={2000}
-                      >Junior
-                    </Baffle>
-                      <span className="highlighted" data-stroke="&nbsp;User "> User </span>
-                      <Baffle
-                        speed={100}
-                        characters="█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒"
-                        obfuscate={false}
-                        revealDuration={2000}
-                      >Interface Developer
-                    </Baffle>
-                    </p>
-                  </div>
+                  </h1>
+                  <p className="subtitle">
+                    <Baffle
+                      speed={100}
+                      characters="█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒"
+                      obfuscate={false}
+                      revealDuration={2000}
+                    >Junior
+                      </Baffle>
+                    <span className="highlighted" data-stroke="&nbsp;User&nbsp;"> User </span>
+                    <Baffle
+                      speed={100}
+                      characters="█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒"
+                      obfuscate={false}
+                      revealDuration={2000}
+                    >Interface Developer
+                      </Baffle>
+                  </p>
                 </section>
                 <section className="section work">
                   <Swiper
@@ -89,7 +88,13 @@ class App extends Component {
                   </Swiper>
                 </section>
                 <section className="section contact">
-                 <Form/>
+                  <div className="container">
+                    <Form />
+                    <div className="hero">
+                      <h2 className="title title--right">Contact <br /><span className="defiz"><hr />me</span></h2>
+                      <p className="subtitle">It is very important for me to keep in touch with you, so I always ready any question that interests you.<span className="highlighted" data-stroke="&nbsp;Shoot!"> Shoot!</span></p>
+                    </div>
+                  </div>
                 </section>
               </main>
             );
