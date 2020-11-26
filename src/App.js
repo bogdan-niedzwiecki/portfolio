@@ -80,7 +80,7 @@ class App extends Component {
                       <SwiperSlide tag="li" key={item.description}>
                         <figure className="figure">
                           <a className="figure__link" href={item.href} target="_blank" rel="noopener noreferrer">
-                            <img className="figure__img" alt={item.description} src={item.src} />
+                            <img className="figure__img" alt={item.description} src={item.src} width="640" height="360" />
                           </a>
                           <figcaption className="figure__figcaption"><a href={item.href} target="_blank" rel="noopener noreferrer" className="figure__description">{item.description}</a></figcaption>
                         </figure>
