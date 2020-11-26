@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Suspense, Fragment, lazy } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Baffle from "baffle-react";
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
@@ -6,9 +6,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import './App.scss';
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Form from './components/Form'
+// import Header from './components/Header'
+// import Footer from './components/Footer'
+import Spinner from './components/Spinner'
+
+const Header = React.lazy(() => import('./components/Header'));
+const Footer = React.lazy(() => import('./components/Footer'));
+const Form = React.lazy(() => import('./components/Form'));
 
 
 class App extends Component {
@@ -26,7 +30,7 @@ class App extends Component {
     ]
 
     return (
-      <Fragment>
+      <Suspense fallback={<Spinner />}>
         <Header anchors={menu} />
         <ReactFullpage
           anchors={menu}
@@ -101,7 +105,7 @@ class App extends Component {
           }}
         />
         <Footer />
-      </Fragment>
+      </Suspense >
     )
   }
 }
