@@ -6,9 +6,9 @@ class Header extends Component {
   sendEmail(e) {
     e.preventDefault();
     emailjs.sendForm('service_etzxb6u', 'template_8fperqm', e.target, 'user_yfExfPTO00ec5x4nkN0Pd')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
+      .then(result => {
+        this.props.afterSend();
+      }, error => {
         console.log(error.text);
       });
   }

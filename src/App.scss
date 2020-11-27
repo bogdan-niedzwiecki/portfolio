@@ -368,7 +368,7 @@
 }
 
 .form__border {
-  transition: width 0.3s;
+  transition: width 0.3s ease-in;
   height: 2px;
   width: 0;
   background-color: $primary;
@@ -415,31 +415,24 @@
   }
 }
 
-.defiz {
-  hr {
-    display: inline-block;
+.dash {
+  position: relative;
+  display: inline-block;
+  width: 3.6em;
+  height: 0.15em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  background-color: $silver;
+  transition: width .3s ease-in;
 
-    vertical-align: middle;
-    background-color: $silver;
-    border: none;
-
-    @include sm {
-      width: 14.5rem;
-      height: 0.75rem;
-      margin-right: 2rem;
-    }
-
-    @include lg {
-      width: 21.75rem;
-      height: 1rem;
-      margin-right: 3rem;
-    }
-
-    @include xl {
-      width: 29rem;
-      height: 1.25rem;
-      margin-right: 4rem;
-    }
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    background-color: $primary;
+    width: 3.6em;
+    height: 100%;
+    z-index: -1;
   }
 }
 
