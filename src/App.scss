@@ -387,7 +387,6 @@
   letter-spacing: $letter-spacing;
   font-size: 1.4rem;
   cursor: pointer;
-  transition: background-color 0.3s;
 
   &:hover {
     background: $primary;
@@ -419,7 +418,7 @@
   position: relative;
   display: inline-block;
   width: 3.6em;
-  height: 0.15em;
+  height: 2px;
   margin-right: 0.5em;
   vertical-align: middle;
   background-color: $silver;

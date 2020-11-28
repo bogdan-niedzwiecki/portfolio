@@ -16,7 +16,9 @@ class App extends Component {
 
   state = {
     activeSection: 0,
-    obfuscate: false
+    obfuscate: false,
+    t1: 'Contact',
+    t2: 'Me'
   }
 
   afterLoad = () => {
@@ -29,13 +31,17 @@ class App extends Component {
 
   afterSend = () => {
     this.dash.current.style.width = "0";
+    this.setState({
+      t1: 'Got It',
+      t2: ''
+    })
   }
 
   render() {
     const characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
     SwiperCore.use([Navigation, Autoplay]);
     const menu = ['about', 'works', 'contact']; const gallery = [
-      // { src: require('./img/projects/possible.webp'), description: 'Possible', href: 'https://bn-possible.netlify.app', },
+      { src: require('./img/projects/possible.webp'), description: 'Possible', href: 'https://bn-possible.netlify.app', },
       { src: require('./img/projects/quote-machine.webp'), description: 'Quote Machine', href: 'https://bn-quote-machine.netlify.app', },
       { src: require('./img/projects/markdown-previewer.webp'), description: 'Markdown Previewer', href: 'https://bn-markdown-previewer.netlify.app', },
       { src: require('./img/projects/drum-machine.webp'), description: 'Drum Machine', href: 'https://bn-drum-machine.netlify.app', }
@@ -116,7 +122,7 @@ class App extends Component {
                           characters={characters}
                           obfuscate={this.state.activeSection === 2 ? obfuscate : false}
                           revealDuration={2000}
-                        >Contact
+                        >{this.state.t1}
                         </Baffle>
                         <br /><span ref={this.dash} className="dash"></span>
                         <Baffle
@@ -124,7 +130,7 @@ class App extends Component {
                           characters={characters}
                           obfuscate={this.state.activeSection === 2 ? obfuscate : false}
                           revealDuration={2000}
-                        >me
+                        >{this.state.t2}
                         </Baffle>
                       </h2>
                       <p className="subtitle">It is very important for me to keep in touch with you, so I am always ready to answer any question that interests you.<span className="highlighted" data-stroke="&nbsp;Shoot!">&nbsp;Shoot!</span></p>
