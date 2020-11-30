@@ -12,7 +12,7 @@ body {
   background-color: #000;
 }
 
-@keyframes grain {
+@keyframes grains {
   0%,
   100% {
     transform: translate(0, 0);
@@ -57,8 +57,8 @@ body {
 
 body::before {
   content: "";
-  opacity: 0.2;
-  animation: grain 1s steps(1) infinite;
+  opacity: 0.25;
+  animation: grains 1s steps(1) infinite;
   height: 300%;
   left: -50%;
   position: fixed;

@@ -1,4 +1,6 @@
-import React, { Component, Fragment, createRef } from 'react';
+
+import { menu, gallery, social } from './api';
+import React, { Component, Fragment } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Baffle from "baffle-react";
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
@@ -6,51 +8,40 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import './App.scss';
-import Header from './components/Header'
-import Footer from './components/Footer'
 import Form from './components/Form'
+SwiperCore.use([Navigation, Autoplay]);
 
 class App extends Component {
 
-  dash = createRef();
-
   state = {
     activeSection: 0,
-    obfuscate: false,
-    t1: 'Contact',
-    t2: 'Me'
-  }
-
-  afterLoad = () => {
-    this.setState({ obfuscate: false })
+    obfuscate: false
   }
 
   onLeave = (origin, destination) => {
     this.setState({ activeSection: destination.index, obfuscate: true })
   }
 
-  afterSend = () => {
-    this.dash.current.style.width = "0";
-    this.setState({
-      t1: 'Got It',
-      t2: ''
-    })
+  afterLoad = () => {
+    this.setState({ obfuscate: false })
   }
 
   render() {
+    const { activeSection, obfuscate } = this.state;
     const characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
-    SwiperCore.use([Navigation, Autoplay]);
-    const menu = ['about', 'works', 'contact']; const gallery = [
-      { src: require('./img/projects/possible.webp'), description: 'Possible', href: 'https://bn-possible.netlify.app', },
-      { src: require('./img/projects/quote-machine.webp'), description: 'Quote Machine', href: 'https://bn-quote-machine.netlify.app', },
-      { src: require('./img/projects/markdown-previewer.webp'), description: 'Markdown Previewer', href: 'https://bn-markdown-previewer.netlify.app', },
-      { src: require('./img/projects/drum-machine.webp'), description: 'Drum Machine', href: 'https://bn-drum-machine.netlify.app', }
-    ]
-    const { obfuscate } = this.state;
 
     return (
       <Fragment>
-        <Header anchors={menu} />
+        <header className="header">
+          <nav className="nav">
+            <ul className="menu" id="menu">
+              {menu.map(anchor => (
+                <li className="menu__item" data-menuanchor={anchor} key={anchor}>
+                  <a className="menu__link" href={`#${anchor}`} data-stroke={anchor}>{anchor}</a>
+                </li>))}
+            </ul>
+          </nav>
+        </header>
         <ReactFullpage
           anchors={menu}
           menu={"#menu"}
@@ -67,7 +58,7 @@ class App extends Component {
                     <Baffle
                       speed={100}
                       characters={characters}
-                      obfuscate={this.state.activeSection === 0 ? obfuscate : false}
+                      obfuscate={activeSection === 0 ? obfuscate : false}
                       revealDuration={2000}
                     >I am Bogdan
                     </Baffle>
@@ -76,7 +67,7 @@ class App extends Component {
                     <Baffle
                       speed={100}
                       characters={characters}
-                      obfuscate={this.state.activeSection === 0 ? obfuscate : false}
+                      obfuscate={activeSection === 0 ? obfuscate : false}
                       revealDuration={2000}
                     >Junior
                       </Baffle>
@@ -84,7 +75,7 @@ class App extends Component {
                     <Baffle
                       speed={100}
                       characters={characters}
-                      obfuscate={this.state.activeSection === 0 ? obfuscate : false}
+                      obfuscate={activeSection === 0 ? obfuscate : false}
                       revealDuration={2000}
                     >Interface Developer
                       </Baffle>
@@ -105,7 +96,10 @@ class App extends Component {
                       <SwiperSlide tag="li" key={item.description}>
                         <figure className="figure">
                           <a className="figure__link" href={item.href} target="_blank" rel="noopener noreferrer">
-                            <img className="figure__img" alt={item.description} src={item.src} width="640" height="360" />
+                            <img className="figure__img" alt={item.description} width="768" height="432"
+                              srcSet={`${item.srcset.xs} 320w, ${item.srcset.sm} 768w, ${item.srcset.md} 1024w, ${item.srcset.lg} 1440w, ${item.srcset.xl}`}
+                              src={item.srcset.xl}
+                              sizes="60vw" />
                           </a>
                           <figcaption className="figure__figcaption"><a href={item.href} target="_blank" rel="noopener noreferrer" className="figure__description">{item.description}</a></figcaption>
                         </figure>
@@ -113,35 +107,23 @@ class App extends Component {
                   </Swiper>
                 </section>
                 <section className="section contact">
-                  <div className="container">
-                    <Form afterSend={this.afterSend} />
-                    <div className="hero">
-                      <h2 className="title title--right">
-                        <Baffle
-                          speed={100}
-                          characters={characters}
-                          obfuscate={this.state.activeSection === 2 ? obfuscate : false}
-                          revealDuration={2000}
-                        >{this.state.t1}
-                        </Baffle>
-                        <br /><span ref={this.dash} className="dash"></span>
-                        <Baffle
-                          speed={100}
-                          characters={characters}
-                          obfuscate={this.state.activeSection === 2 ? obfuscate : false}
-                          revealDuration={2000}
-                        >{this.state.t2}
-                        </Baffle>
-                      </h2>
-                      <p className="subtitle">It is very important for me to keep in touch with you, so I am always ready to answer any question that interests you.<span className="highlighted" data-stroke="&nbsp;Shoot!">&nbsp;Shoot!</span></p>
-                    </div>
-                  </div>
+                  <Form activeSection={activeSection}
+                    obfuscate={obfuscate}
+                    setObfuscate={obfuscate => this.setState({ obfuscate })}
+                    characters={characters} />
                 </section>
               </main>
             );
           }}
         />
-        <Footer />
+        <footer className="footer">
+          <ul className="social">
+            {social.map(item => (
+              <li className="social__item" key={item.content}>
+                <a className="social__link" href={item.href} rel="noopener noreferrer" target="_blank">{item.content}</a>
+              </li>))}
+          </ul>
+        </footer>
       </Fragment >
     )
   }
