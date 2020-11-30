@@ -28,6 +28,7 @@ class App extends Component {
 
   render() {
     const { activeSection, obfuscate } = this.state;
+    const isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
     const characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
 
     return (
@@ -43,6 +44,7 @@ class App extends Component {
           </nav>
         </header>
         <ReactFullpage
+          scrollBar={isTouchDevice}
           anchors={menu}
           menu={"#menu"}
           paddingTop={'8vw'}
