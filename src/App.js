@@ -19,11 +19,11 @@ class App extends Component {
   }
 
   onLeave = (origin, destination) => {
-    this.setState({ activeSection: destination.index, obfuscate: true })
+    this.setState({ activeSection: destination.index, obfuscate: true });
   }
 
   afterLoad = () => {
-    this.setState({ obfuscate: false })
+    this.setState({ obfuscate: false });
   }
 
   render() {
