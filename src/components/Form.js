@@ -59,7 +59,7 @@ class Form extends Component {
           <button className="form__submit" type="submit">Share your thoughts</button>
         </form>
         <div className="hero">
-          <h2 className="title title--right">
+          <h2 className="title title--contact">
             <Baffle
               speed={100}
               characters={characters}

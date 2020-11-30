@@ -73,16 +73,23 @@
   padding: 0;
   color: $font-primary;
 
-  &--right {
-    text-align: right;
-  }
-
   @include lg {
     font-size: 6rem;
   }
 
   @include xl {
     font-size: 8rem;
+  }
+
+  &--contact {
+    text-align: right;
+    margin: 0;
+    line-height: 1.1;
+
+    @include lg {
+      line-height: unset;
+      margin: 0 0 1.8rem 0;
+    }
   }
 }
 
