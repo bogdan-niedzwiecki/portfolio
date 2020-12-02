@@ -1,10 +1,11 @@
 
 import { menu, gallery, social } from './api';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Baffle from "baffle-react";
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { GoMarkGithub } from 'react-icons/go';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import './App.scss';
@@ -32,7 +33,7 @@ class App extends Component {
     const characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
 
     return (
-      <Fragment>
+      <>
         <header className="header">
           <nav className="nav">
             <ul className="menu" id="menu">
@@ -90,7 +91,7 @@ class App extends Component {
                     navigation
                     slidesPerView={2}
                     centeredSlides={true}
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    // autoplay={{ delay: 4000, disableOnInteraction: false }}
                     speed={400}
                     simulateTouch={false}
                   >
@@ -103,7 +104,8 @@ class App extends Component {
                               src={item.srcset.xl}
                               sizes="60vw" />
                           </a>
-                          <figcaption className="figure__figcaption"><a href={item.href} target="_blank" rel="noopener noreferrer" className="figure__description">{item.description}</a></figcaption>
+                          {item.github ? <a className="figure__code" href={item.github} target="_blank" rel="noopener noreferrer"><GoMarkGithub size={'calc(2vw + 1rem)'}/></a> : <></>}
+                          <figcaption className="figure__figcaption"><a className="figure__description" href={item.href} target="_blank" rel="noopener noreferrer">{item.description}</a></figcaption>
                         </figure>
                       </SwiperSlide>))}
                   </Swiper>
@@ -126,7 +128,7 @@ class App extends Component {
               </li>))}
           </ul>
         </footer>
-      </Fragment >
+      </>
     )
   }
 }

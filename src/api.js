@@ -22,6 +22,7 @@ export const gallery = [
     },
     description: 'Quote Machine',
     href: 'https://bn-quote-machine.netlify.app',
+    github: 'https://github.com/bogdan-niedzwiecki/quote-machine'
   },
   {
     srcset: {
@@ -33,6 +34,7 @@ export const gallery = [
     },
     description: 'Markdown Previewer',
     href: 'https://bn-markdown-previewer.netlify.app',
+    github: 'https://github.com/bogdan-niedzwiecki/markdown-previewer'    
   },
   {
     srcset: {
@@ -44,6 +46,7 @@ export const gallery = [
     },
     description: 'Drum Machine',
     href: 'https://bn-drum-machine.netlify.app',
+    github: 'https://github.com/bogdan-niedzwiecki/drum-machine'
   }
 ];
 
