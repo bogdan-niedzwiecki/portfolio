@@ -91,7 +91,7 @@ class App extends Component {
                     navigation
                     slidesPerView={2}
                     centeredSlides={true}
-                    // autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
                     speed={400}
                     simulateTouch={false}
                   >
