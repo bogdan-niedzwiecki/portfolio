@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "MADE Soulmaze";
-  src: url("../assets/fonts/MADE-Soulmaze.otf");
-  font-display: block;
-}
-
 @keyframes grains {
   0%,
   100% {
@@ -69,16 +63,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #000;
-}
 
-body::before {
-  content: "";
-  opacity: 0.25;
-  animation: grains 1s steps(1) infinite;
-  height: 300%;
-  left: -50%;
-  position: fixed;
-  top: -110%;
-  width: 300%;
-  background: url("../assets/images/grains.webp");
+  &::before {
+    content: "";
+    opacity: 0.25;
+    animation: grains 1s steps(1) infinite;
+    height: 300%;
+    left: -50%;
+    position: fixed;
+    top: -110%;
+    width: 300%;
+    background: url("../assets/images/grains.webp");
+  }
 }
