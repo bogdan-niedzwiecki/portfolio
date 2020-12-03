@@ -1,4 +1,5 @@
-
+import './assets/fonts/MADE-Soulmaze.otf';
+import './assets/images/grains.webp';
 import { menu, gallery, social } from './api';
 import React, { Component } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
