@@ -10,8 +10,6 @@ import 'swiper/components/navigation/navigation.scss';
 import { GoMarkGithub } from 'react-icons/go';
 import './App.scss';
 import Form from './components/Form';
-import './assets/images/grains.webp';
-import './assets/fonts/MADE-Soulmaze.otf';
 SwiperCore.use([Navigation, Autoplay]);
 
 class App extends Component {
