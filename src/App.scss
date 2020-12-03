@@ -47,7 +47,7 @@
   &::after {
     content: attr(data-stroke);
     position: absolute;
-    color: $black;
+    color: transparent;
     -webkit-text-stroke: 1px $primary;
     left: calc(1.75px + 0.025em);
     top: calc(1.75px + 0.025em);
