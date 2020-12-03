@@ -5,11 +5,13 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import Baffle from "baffle-react";
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { GoMarkGithub } from 'react-icons/go';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
+import { GoMarkGithub } from 'react-icons/go';
 import './App.scss';
-import Form from './components/Form'
+import Form from './components/Form';
+import './assets/images/grains.webp';
+import './assets/fonts/MADE-Soulmaze.otf';
 SwiperCore.use([Navigation, Autoplay]);
 
 class App extends Component {
@@ -104,7 +106,7 @@ class App extends Component {
                               src={item.srcset.xl}
                               sizes="60vw" />
                           </a>
-                          {item.github ? <a className="figure__code" href={item.github} target="_blank" rel="noopener noreferrer"><GoMarkGithub size={'calc(2vw + 1rem)'}/></a> : <></>}
+                          {item.github ? <a className="figure__code" href={item.github} target="_blank" rel="noopener noreferrer"><GoMarkGithub size='calc(2vw + 1rem)' title='View on Github' /></a> : <></>}
                           <figcaption className="figure__figcaption"><a className="figure__description" href={item.href} target="_blank" rel="noopener noreferrer">{item.description}</a></figcaption>
                         </figure>
                       </SwiperSlide>))}

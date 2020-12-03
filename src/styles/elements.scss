@@ -1,3 +1,52 @@
+@font-face {
+  font-family: "MADE Soulmaze";
+  src: url("../assets/fonts/MADE-Soulmaze.otf");
+  font-display: block;
+}
+
+@keyframes grains {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
 html {
   font-size: 10px;
   box-sizing: border-box;
@@ -12,4 +61,24 @@ html {
 *::selection {
   color: $black;
   background: $white;
+}
+
+body {
+  margin: 0;
+  font-family: "MADE Soulmaze", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+}
+
+body::before {
+  content: "";
+  opacity: 0.25;
+  animation: grains 1s steps(1) infinite;
+  height: 300%;
+  left: -50%;
+  position: fixed;
+  top: -110%;
+  width: 300%;
+  background: url("../assets/images/grains.webp");
 }
