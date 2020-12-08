@@ -15,6 +15,9 @@ SwiperCore.use([Navigation, Autoplay]);
 
 class App extends Component {
 
+  isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
+  characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
+
   state = {
     activeSection: 0,
     obfuscate: false
@@ -30,8 +33,6 @@ class App extends Component {
 
   render() {
     const { activeSection, obfuscate } = this.state;
-    const isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
-    const characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
 
     return (
       <>
@@ -46,7 +47,7 @@ class App extends Component {
           </nav>
         </header>
         <ReactFullpage
-          scrollBar={isTouchDevice}
+          scrollBar={this.isTouchDevice}
           anchors={menu}
           menu={"#menu"}
           paddingTop={'8vw'}
@@ -57,33 +58,35 @@ class App extends Component {
             return (
               <main>
                 <section className="section about">
-                  <h1 className="title">
-                    <span className="highlighted" data-stroke="Hey,&nbsp;">Hey,&nbsp;</span>
-                    <Baffle
-                      speed={100}
-                      characters={characters}
-                      obfuscate={activeSection === 0 ? obfuscate : false}
-                      revealDuration={2000}
-                    >I am Bogdan
+                  <div className="hero">
+                    <h1 className="title">
+                      <span className="highlighted" data-stroke="Hey,&nbsp;">Hey,&nbsp;</span>
+                      <Baffle
+                        speed={100}
+                        characters={this.characters}
+                        obfuscate={activeSection === 0 ? obfuscate : false}
+                        revealDuration={2000}
+                      >I am Bogdan
                     </Baffle>
-                  </h1>
-                  <p className="subtitle">
-                    <Baffle
-                      speed={100}
-                      characters={characters}
-                      obfuscate={activeSection === 0 ? obfuscate : false}
-                      revealDuration={2000}
-                    >Junior
+                    </h1>
+                    <p className="subtitle">
+                      <Baffle
+                        speed={100}
+                        characters={this.characters}
+                        obfuscate={activeSection === 0 ? obfuscate : false}
+                        revealDuration={2000}
+                      >Junior
                       </Baffle>
-                    <span className="highlighted" data-stroke="&nbsp;User&nbsp;">&nbsp;User&nbsp;</span>
-                    <Baffle
-                      speed={100}
-                      characters={characters}
-                      obfuscate={activeSection === 0 ? obfuscate : false}
-                      revealDuration={2000}
-                    >Interface Developer
+                      <span className="highlighted" data-stroke="&nbsp;User&nbsp;">&nbsp;User&nbsp;</span>
+                      <Baffle
+                        speed={100}
+                        characters={this.characters}
+                        obfuscate={activeSection === 0 ? obfuscate : false}
+                        revealDuration={2000}
+                      >Interface Developer
                       </Baffle>
-                  </p>
+                    </p>
+                  </div>
                 </section>
                 <section className="section work">
                   <Swiper
@@ -105,7 +108,7 @@ class App extends Component {
                               src={item.srcset.xl}
                               sizes="60vw" />
                           </a>
-                          {item.github ? <a className="figure__code" href={item.github} target="_blank" rel="noopener noreferrer"><GoMarkGithub size='calc(2vw + 1rem)' title='View on Github' /></a> : <></>}
+                          {item.github ? <a className="figure__code" href={item.github} target="_blank" rel="noopener noreferrer"><GoMarkGithub size='calc(2vw + 2rem)' title='View on Github' /></a> : <></>}
                           <figcaption className="figure__figcaption"><a className="figure__description" href={item.href} target="_blank" rel="noopener noreferrer">{item.description}</a></figcaption>
                         </figure>
                       </SwiperSlide>))}
@@ -115,7 +118,7 @@ class App extends Component {
                   <Form activeSection={activeSection}
                     obfuscate={obfuscate}
                     setObfuscate={obfuscate => this.setState({ obfuscate })}
-                    characters={characters} />
+                    characters={this.characters} />
                 </section>
               </main>
             );

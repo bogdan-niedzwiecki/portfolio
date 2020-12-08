@@ -65,6 +65,17 @@
   text-align: center;
 }
 
+.hero {
+  margin: 0 auto;
+  padding: 0 4vw;
+  max-width: 135rem;
+  max-height: 40rem;
+
+  @include lg {
+    max-height: 60rem;
+  }
+}
+
 .title {
   font-size: 4rem;
   letter-spacing: $letter-spacing;

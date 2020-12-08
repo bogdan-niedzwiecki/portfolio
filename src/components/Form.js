@@ -11,6 +11,11 @@ class Form extends Component {
     name: '',
     email: '',
     message: '',
+    button: {
+      label: 'Share your thoughts',
+      obfuscate: false,
+      update: false
+    },
     firstLine: 'Contact',
     secondLine: 'Me'
   }
@@ -21,14 +26,23 @@ class Form extends Component {
     this.setState({
       name: '',
       email: '',
-      message: '',
-      firstLine: 'Picked It',
-      secondLine: 'Up'
+      message: ''
     });
+    if (window.innerWidth < 576) {
+      this.setState({ button: { label: 'Picked It Up', obfuscate: true, update: true } });
+    } else {
+      this.setState({
+        firstLine: 'Picked It',
+        secondLine: 'Up'
+      });
+    }
     this.props.setObfuscate(true);
     emailjs.sendForm('service_etzxb6u', 'template_8fperqm', e.target, 'user_yfExfPTO00ec5x4nkN0Pd')
       .then(() => {
         this.props.setObfuscate(false);
+        if (window.innerWidth < 576) {
+          this.setState(state => ({ button: { ...state.button, obfuscate: false } }));
+        }
       }, error => {
         console.log(error.text);
       });
@@ -56,9 +70,17 @@ class Form extends Component {
             <label className="form__label" htmlFor="user_message">Your message</label>
             <div className="form__border"></div>
           </div>
-          <button className="form__submit" type="submit">Share your thoughts</button>
+          <button className="form__submit" type="submit">
+            <Baffle
+              speed={100}
+              characters={characters}
+              update={this.state.button.update}
+              obfuscate={this.state.button.obfuscate}
+              revealDuration={2000}
+            >{this.state.button.label}</Baffle>
+          </button>
         </form>
-        <div className="hero">
+        <div className="speech">
           <h2 className="title title--contact">
             <Baffle
               speed={100}
