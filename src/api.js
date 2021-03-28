@@ -3,17 +3,6 @@ export const menu = ['about', 'works', 'contact'];
 export const gallery = [
   {
     srcset: {
-      xs: require('./assets/images/projects/xs-possible.webp'),
-      sm: require('./assets/images/projects/sm-possible.webp'),
-      md: require('./assets/images/projects/md-possible.webp'),
-      lg: require('./assets/images/projects/lg-possible.webp'),
-      xl: require('./assets/images/projects/possible.webp'),
-    },
-    description: 'Possible',
-    href: 'https://bn-possible.netlify.app',
-  },
-  {
-    srcset: {
       xs: require('./assets/images/projects/xs-quote-machine.webp'),
       sm: require('./assets/images/projects/sm-quote-machine.webp'),
       md: require('./assets/images/projects/md-quote-machine.webp'),
