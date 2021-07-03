@@ -1,6 +1,7 @@
 import './assets/fonts/MADE-Soulmaze.otf';
 import './assets/images/grains.webp';
-import { menu, gallery, social } from './api';
+import { menu, social } from './menu';
+import NetlifyAPI from 'netlify';
 import React, { Component } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Baffle from "baffle-react";
@@ -17,10 +18,30 @@ class App extends Component {
 
   isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
   characters = '█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒';
+  gallery = [];
 
   state = {
     activeSection: 0,
     obfuscate: false
+  }
+
+  getGallery = async function () {
+    const client = new NetlifyAPI('QPw22opNlg3VX2cxi6Sg6sBqq3OtEDWd8D_0OTN3K98')
+    const sites = await client.listSites()
+    return sites
+  }
+
+  handleGallery(sites) {
+    this.gallery = sites.filter(site => site.name !== 'niedzwiecki');
+    this.gallery = this.gallery.map(item => ({ ...item, caption: this.createCaption(item.name) }));
+  }
+
+  createCaption(name) {
+    return name.replace('bn-', '').replaceAll('-', ' ');
+  }
+
+  componentDidMount() {
+    this.getGallery().then(sites => this.handleGallery(sites));
   }
 
   onLeave = (origin, destination) => {
@@ -67,7 +88,7 @@ class App extends Component {
                         obfuscate={activeSection === 0 ? obfuscate : false}
                         revealDuration={2000}
                       >I am Bogdan
-                    </Baffle>
+                      </Baffle>
                     </h1>
                     <p className="subtitle">
                       <Baffle
@@ -88,7 +109,7 @@ class App extends Component {
                     </p>
                   </div>
                 </section>
-                <section className="section work">
+               {this.gallery.length && <section className="section work">
                   <Swiper
                     wrapperTag="ul"
                     breakpoints={{ 0: { spaceBetween: 40 }, 576: { spaceBetween: 80 }, 768: { spaceBetween: 120 } }}
@@ -99,21 +120,20 @@ class App extends Component {
                     speed={400}
                     simulateTouch={false}
                   >
-                    {gallery.map(item => (
-                      <SwiperSlide tag="li" key={item.description}>
+                    {this.gallery.map(item => (
+                      <SwiperSlide tag="li" key={item.id}>
                         <figure className="figure">
-                          <a className="figure__link" href={item.href} target="_blank" rel="noopener noreferrer">
-                            <img className="figure__img" alt={item.description} width="768" height="432"
-                              srcSet={`${item.srcset.xs} 320w, ${item.srcset.sm} 768w, ${item.srcset.md} 1024w, ${item.srcset.lg} 1440w, ${item.srcset.xl}`}
-                              src={item.srcset.xl}
-                              sizes="60vw" />
+                          <a className="figure__link" href={item.url} target="_blank" rel="noopener noreferrer">
+                            <img className="figure__img" alt={item.name} width="960" height="600"
+                              src={item.screenshot_url}
+                            />
                           </a>
-                          {item.github ? <a className="figure__code" href={item.github} target="_blank" rel="noopener noreferrer"><GoMarkGithub size='calc(2vw + 2rem)' title='View on Github' /></a> : <></>}
-                          <figcaption className="figure__figcaption"><a className="figure__description" href={item.href} target="_blank" rel="noopener noreferrer">{item.description}</a></figcaption>
+                          <a className="figure__code" href={item.build_settings.repo_url} target="_blank" rel="noopener noreferrer"><GoMarkGithub size='calc(2vw + 2rem)' title='View on Github' /></a>
+                          <figcaption className="figure__figcaption"><a className="figure__description" href={item.url} target="_blank" rel="noopener noreferrer">{item.caption}</a></figcaption>
                         </figure>
                       </SwiperSlide>))}
                   </Swiper>
-                </section>
+                </section>}
                 <section className="section contact">
                   <Form activeSection={activeSection}
                     obfuscate={obfuscate}

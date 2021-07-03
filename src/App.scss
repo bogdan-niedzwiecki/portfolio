@@ -171,6 +171,7 @@
 
 .swiper-slide {
   &-active {
+    z-index: 1;
     .figure {
       transform: scale(1);
     }
@@ -261,7 +262,6 @@
   transition: transform 0.3s 1s;
   color: $font-primary;
   text-align: left;
-  z-index: 1;
 
   @include lg {
     font-size: 4rem;
