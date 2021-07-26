@@ -9,7 +9,7 @@ import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
-import { GoMarkGithub } from 'react-icons/go';
+import GithubCorner from 'react-github-corner';
 import './App.scss';
 import Form from './components/Form';
 SwiperCore.use([Navigation, Autoplay]);
@@ -25,6 +25,10 @@ class App extends Component {
     obfuscate: false
   }
 
+  componentDidMount() {
+    this.getGallery().then(sites => this.handleGallery(sites));
+  }
+
   getGallery = async function () {
     const client = new NetlifyAPI('QPw22opNlg3VX2cxi6Sg6sBqq3OtEDWd8D_0OTN3K98')
     const sites = await client.listSites()
@@ -38,10 +42,6 @@ class App extends Component {
 
   createCaption(name) {
     return name.replace('bn-', '').replaceAll('-', ' ');
-  }
-
-  componentDidMount() {
-    this.getGallery().then(sites => this.handleGallery(sites));
   }
 
   onLeave = (origin, destination) => {
@@ -109,14 +109,14 @@ class App extends Component {
                     </p>
                   </div>
                 </section>
-               {this.gallery.length && <section className="section work">
+                {this.gallery.length && <section className="section work">
                   <Swiper
                     wrapperTag="ul"
                     breakpoints={{ 0: { spaceBetween: 40 }, 576: { spaceBetween: 80 }, 768: { spaceBetween: 120 } }}
                     navigation
                     slidesPerView={2}
                     centeredSlides={true}
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    autoplay={{ delay: 5000, disableOnInteraction: false }}
                     speed={400}
                     simulateTouch={false}
                   >
@@ -128,7 +128,7 @@ class App extends Component {
                               src={item.screenshot_url}
                             />
                           </a>
-                          <a className="figure__code" href={item.build_settings.repo_url} target="_blank" rel="noopener noreferrer"><GoMarkGithub size='calc(2vw + 2rem)' title='View on Github' /></a>
+                          <GithubCorner href={item.build_settings.repo_url} target="_blank" ariaLabel="View on Github" bannerColor="#fff" octoColor="#050505" size="70" />
                           <figcaption className="figure__figcaption"><a className="figure__description" href={item.url} target="_blank" rel="noopener noreferrer">{item.caption}</a></figcaption>
                         </figure>
                       </SwiperSlide>))}

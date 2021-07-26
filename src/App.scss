@@ -170,11 +170,20 @@
 }
 
 .swiper-slide {
+  .github-corner {
+    transition: opacity 0.3s 1s;
+    opacity: 0.5;
+  }
   &-active {
+    .github-corner {
+      opacity: 1;
+    }
+
     z-index: 1;
     .figure {
       transform: scale(1);
     }
+
     .figure__link {
       &::before {
         opacity: 0.5;
@@ -235,13 +244,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.figure__code {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: $white;
 }
 
 .figure__figcaption {
