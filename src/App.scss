@@ -198,13 +198,35 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: $white !important;
   display: none !important;
-  transform: scale(1.5);
 
   @include lg {
-    display: block !important;
+    display: flex !important;
+    align-items: center;
+    color: $white;
+    margin: 0;
+    height: 100%;
+    top: 0;
+    padding: 30px;
+
+    &::after {
+      transform: scale(1.5);
+      transition: transform 0.1s;
+    }
+
+    &:hover {
+      &::after {
+        transform: scale(1.8);
+      }
+    }
   }
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+.swiper-button-next {
+  right: 0;
 }
 
 .figure {
