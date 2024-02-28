@@ -6,6 +6,7 @@ import './Form.scss';
 class Form extends Component {
 
   dash = createRef();
+  form = createRef();
 
   state = {
     name: '',
@@ -37,7 +38,7 @@ class Form extends Component {
       });
     }
     this.props.setObfuscate(true);
-    emailjs.sendForm('service_etzxb6u', 'template_8fperqm', e.target, 'user_yfExfPTO00ec5x4nkN0Pd')
+    emailjs.sendForm(process.env.REACT_APP_EMAIL_SERVICE_ID, process.env.REACT_APP_EMAIL_TEMPLATE_ID, this.form.current, process.env.REACT_APP_EMAIL_PUBLIC_KEY)
       .then(() => {
         this.props.setObfuscate(false);
         if (window.innerWidth < 576) {
@@ -54,7 +55,7 @@ class Form extends Component {
 
     return (
       <div className="container">
-        <form className="form" autoComplete="off" onSubmit={e => this.sendEmail(e)}>
+        <form className="form" autoComplete="off" ref={this.form} onSubmit={e => this.sendEmail(e)}>
           <div className="form__field">
             <input placeholder="Your name" className="form__input" type="text" id="user_name" name="user_name" value={name} onChange={e => this.setState({ name: e.target.value })} required spellCheck="false" />
             <label className="form__label" htmlFor="user_name">Your Name</label>

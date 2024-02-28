@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   getGallery = async function () {
-    const client = new NetlifyAPI('QPw22opNlg3VX2cxi6Sg6sBqq3OtEDWd8D_0OTN3K98')
+    const client = new NetlifyAPI(process.env.REACT_APP_NETLIFY_ACCESS_TOKEN)
     const sites = await client.listSites()
     return sites
   }
@@ -91,13 +91,6 @@ class App extends Component {
                       </Baffle>
                     </h1>
                     <p className="subtitle">
-                      <Baffle
-                        speed={100}
-                        characters={this.characters}
-                        obfuscate={activeSection === 0 ? obfuscate : false}
-                        revealDuration={2000}
-                      >Junior
-                      </Baffle>
                       <span className="highlighted" data-stroke="&nbsp;User&nbsp;">&nbsp;User&nbsp;</span>
                       <Baffle
                         speed={100}
