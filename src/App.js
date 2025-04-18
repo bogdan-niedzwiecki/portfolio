@@ -1,6 +1,6 @@
 import "./assets/fonts/MADE-Soulmaze.otf";
 import "./assets/images/grains.webp";
-import nextjs_dashboard from "./assets/images/nextjs_dashboard.webp";
+import nextjs from "./assets/images/nextjs.webp";
 import { menu, social } from "./menu";
 import NetlifyAPI from "netlify";
 import React, { Component } from "react";
@@ -78,7 +78,7 @@ class App extends Component {
             id: project.id,
             url: `https://${await this.getProjectDomainById(project.id)}/`,
             name: project.name,
-            screenshot_url: nextjs_dashboard,
+            screenshot_url: nextjs,
             build_settings: {
               repo_url: `https://github.com/${project.link.org}/${project.link.repo}`,
             },
