@@ -11,3 +11,8 @@
   from = "/api/netlify/sites"
   to = "/.netlify/functions/netlify-sites"
   status = 200
+
+[[redirects]]
+  from = "/api/contact/send"
+  to = "/.netlify/functions/contact-send"
+  status = 200
