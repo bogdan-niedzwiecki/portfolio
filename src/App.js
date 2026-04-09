@@ -2,8 +2,7 @@ import "./assets/fonts/MADE-Soulmaze.otf";
 import "./assets/images/grains.webp";
 import nextjs from "./assets/images/nextjs.webp";
 import { menu, social } from "./menu";
-import NetlifyAPI from "netlify";
-import React, { Component } from "react";
+import { Component } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import Baffle from "baffle-react";
 import SwiperCore, { Navigation, Autoplay } from "swiper";
@@ -37,11 +36,7 @@ class App extends Component {
 
   getVercelSites = async function () {
     try {
-      const res = await fetch("https://api.vercel.com/v9/projects", {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_VERCEL_ACCESS_TOKEN}`,
-        },
-      });
+      const res = await fetch("/api/vercel/projects");
 
       if (!res.ok) {
         throw new Error(`Error: ${res.status}`);
@@ -53,13 +48,13 @@ class App extends Component {
         data.projects.map(async (project) => {
           return {
             id: project.id,
-            url: project.latestDeployments[0].alias[0],
+            url: project.url,
             name: project.name,
             screenshot_url: nextjs,
             build_settings: {
-              repo_url: `https://github.com/${project.link.org}/${project.link.repo}`,
+              repo_url: project.repo_url,
             },
-            caption: project.name.replaceAll("-", " "),
+            caption: project.caption,
           };
         }),
       );
@@ -70,16 +65,19 @@ class App extends Component {
   };
 
   getNetlifySites = async function () {
-    const client = new NetlifyAPI(process.env.REACT_APP_NETLIFY_ACCESS_TOKEN);
-    const sites = await client.listSites();
-    const sitesWithoutPortfolio = sites.filter(
-      (site) => site.name !== "niedzwiecki",
-    );
-    const sitesWithCaption = sitesWithoutPortfolio.map((item) => ({
-      ...item,
-      caption: item.name.replace("bn-", "").replaceAll("-", " "),
-    }));
-    return sitesWithCaption;
+    try {
+      const res = await fetch("/api/netlify/sites");
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data.sites;
+    } catch (error) {
+      console.error("getNetlifySites failed");
+      return [];
+    }
   };
 
   onLeave = (origin, destination) => {

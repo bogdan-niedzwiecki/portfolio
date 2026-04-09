@@ -24,3 +24,6 @@ yarn-error.log*
 
 # image resizer
 /src/sharp.js
+
+# Local Netlify folder
+.netlify

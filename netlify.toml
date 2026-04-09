@@ -1,0 +1,13 @@
+[build]
+  publish = "build"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/vercel/projects"
+  to = "/.netlify/functions/vercel-projects"
+  status = 200
+
+[[redirects]]
+  from = "/api/netlify/sites"
+  to = "/.netlify/functions/netlify-sites"
+  status = 200
