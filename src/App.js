@@ -2,7 +2,7 @@ import "./assets/fonts/MADE-Soulmaze.otf";
 import "./assets/images/grains.webp";
 import nextjs from "./assets/images/nextjs.webp";
 import { menu, social } from "./menu";
-import { Component } from "react";
+import React, { Component } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import Baffle from "baffle-react";
 import SwiperCore, { Navigation, Autoplay } from "swiper";
