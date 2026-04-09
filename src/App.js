@@ -17,7 +17,7 @@ SwiperCore.use([Navigation, Autoplay]);
 
 class App extends Component {
   isTouchDevice = navigator.userAgent.match(
-    /(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/
+    /(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/,
   );
   characters = "█▒/ ██▒▒▒ █▓█▓▒ ░▒/ █░>█▓ ▒▒</ ▒▓░ █▒▒░ ░░█▒";
   gallery = [];
@@ -34,29 +34,6 @@ class App extends Component {
     ]);
     this.gallery = sites.flat();
   }
-
-  getProjectDomainById = async function (id) {
-    try {
-      const res = await fetch(
-        `https://api.vercel.com/v9/projects/${id}/domains`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_VERCEL_ACCESS_TOKEN}`,
-          },
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
-      }
-
-      const data = await res.json();
-
-      return data.domains[0].name;
-    } catch (error) {
-      console.error("getProjectDomainById failed");
-    }
-  };
 
   getVercelSites = async function () {
     try {
@@ -76,7 +53,7 @@ class App extends Component {
         data.projects.map(async (project) => {
           return {
             id: project.id,
-            url: `https://${await this.getProjectDomainById(project.id)}/`,
+            url: project.latestDeployments[0].alias[0],
             name: project.name,
             screenshot_url: nextjs,
             build_settings: {
@@ -84,7 +61,7 @@ class App extends Component {
             },
             caption: project.name.replaceAll("-", " "),
           };
-        })
+        }),
       );
       return sites;
     } catch (error) {
@@ -96,7 +73,7 @@ class App extends Component {
     const client = new NetlifyAPI(process.env.REACT_APP_NETLIFY_ACCESS_TOKEN);
     const sites = await client.listSites();
     const sitesWithoutPortfolio = sites.filter(
-      (site) => site.name !== "niedzwiecki"
+      (site) => site.name !== "niedzwiecki",
     );
     const sitesWithCaption = sitesWithoutPortfolio.map((item) => ({
       ...item,
