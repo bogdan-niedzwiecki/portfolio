@@ -10,8 +10,9 @@ exports.handler = async (event) => {
     const serviceId = process.env.EMAIL_SERVICE_ID;
     const templateId = process.env.EMAIL_TEMPLATE_ID;
     const publicKey = process.env.EMAIL_PUBLIC_KEY;
+    const privateKey = process.env.EMAIL_PRIVATE_KEY;
 
-    if (!serviceId || !templateId || !publicKey) {
+    if (!serviceId || !templateId || !publicKey || !privateKey) {
       return {
         statusCode: 500,
         body: JSON.stringify({ error: "Missing EmailJS configuration" }),
@@ -34,6 +35,7 @@ exports.handler = async (event) => {
       service_id: serviceId,
       template_id: templateId,
       user_id: publicKey,
+      accessToken: privateKey,
       template_params: {
         user_name: userName,
         user_email: userEmail,
